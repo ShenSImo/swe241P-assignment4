@@ -48,7 +48,6 @@ def count_num_islands(cities):
     for city in cities:
         if city not in discovered:
             islands += 1
-        else:
             discovered.add(city)
             #add all the cities connected to the source city in the visited set
             dfs(city, discovered)
@@ -74,7 +73,7 @@ def count_island_population(cities):
     for city in cities:
         if city not in discovered:
             discovered.add(city)
-            total += dfs_population(city, discovered)
+            total = dfs_population(city, discovered)
             populations.append(total)#append the sum population of each island with one or more cities
     return populations
 
@@ -120,7 +119,7 @@ if __name__ == "__main__":
     print("Task 4: population of different isalnds")
     list_population = count_island_population(cities)
     for i in range(len(list_population)):
-        print(list_population[0])
+        print(list_population[i])
 
     print("Task 5: minimum distance")
     a = cities[0]
