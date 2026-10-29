@@ -1,3 +1,6 @@
+#https://www.youtube.com/watch?v=4jyESQDrpls&t=1572s
+#https://www.youtube.com/watch?v=pcKY4hjDrxk&t=1s
+#https://www.youtube.com/watch?v=s-CYnVz-uh4&t=122s
 class City:
     def __init__(self, name, population):
         self.name = name
@@ -10,6 +13,8 @@ class City:
 
 
 def build_graph(population_file, road_file):
+    #create a dictionary to store the city name
+    #and its corresponding City object
     cities = {}
 
     with open(population_file) as f:
@@ -31,9 +36,11 @@ def build_graph(population_file, road_file):
             city_1 = cities[parts[0].strip()]
             city_2 = cities[parts[1].strip()]
             #since highway goes both way, it's an undirected graph
+            #use add_neighbor method to add the neighbor to each city in the road network dictionary
             city_1.add_neighbor(city_2)
             city_2.add_neighbor(city_1)
     return list(cities.values())
+
 #discovered is a set of visited cities
 def dfs(source, discovered):
     for city in source.neighbors:
@@ -82,6 +89,7 @@ def count_island_population(cities):
 # Note that this function requires you to find the distance, i.e., the number of unique highways between two cities.
 
 def min_distance(start, end):
+    #when the start and end city are the same, the distance is 0
     if start == end:
         return 0
     discovered = set()
@@ -89,7 +97,8 @@ def min_distance(start, end):
     cur = [start]
 
     distance = 0
-    #when cur is not empty
+    #when cur is not empty which means there are still cities to explore
+    #we will keep exploring the neighbors of the current city
     while cur:
         distance += 1
         nxt = []
